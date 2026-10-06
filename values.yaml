@@ -10,6 +10,16 @@ gatewayFrontendJsHost:
 # ===== Optional =====
 hostPrefix: ""
 
+BACKEND_EXTRA_TEXT_SUFFIX: ""
+BACKEND_SLOW_START: 0
+
+FRONTEND_FONT_COLOR: ""
+FRONTEND_BACKGROUND_COLOR: ""
+
+backendImage: ghcr.io/ondrejsika/counter
+frontendGoImage: ghcr.io/ondrejsika/counter-frontend-go
+frontendJsImage: ghcr.io/ondrejsika/counter-frontend
+
 clusterIssuer: letsencrypt
 gatewayClusterIssuer: letsencrypt-gw
 

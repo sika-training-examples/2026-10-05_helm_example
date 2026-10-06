@@ -16,10 +16,14 @@ spec:
     spec:
       containers:
         - name: frontend-js
-          image: ghcr.io/ondrejsika/counter-frontend
+          image: {{ .Values.frontendJsImage }}
           env:
             - name: API_ORIGIN
               value: http://backend
+            - name: FONT_COLOR
+              value: {{ .Values.FRONTEND_FONT_COLOR | quote }}
+            - name: BACKGROUND_COLOR
+              value: {{ .Values.FRONTEND_BACKGROUND_COLOR | quote }}
           ports:
             - name: http
               containerPort: 3000

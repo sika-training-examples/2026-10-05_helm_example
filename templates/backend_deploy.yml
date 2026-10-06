@@ -25,7 +25,7 @@ spec:
             - job/migrations
       containers:
         - name: backend
-          image: ghcr.io/ondrejsika/counter
+          image: {{ .Values.backendImage }}
           env:
             - name: REDIS
               value: redis
@@ -34,9 +34,9 @@ spec:
             - name: HTTP_CLOSE_CONNECTION
               value: "1"
             - name: SLOW_START
-              value: "20"
+              value: {{ .Values.BACKEND_SLOW_START | quote }}
             - name: EXTRA_TEXT_SUFFIX
-              value: v3
+              value: {{ .Values.BACKEND_EXTRA_TEXT_SUFFIX | quote }}
           ports:
             - name: http
               containerPort: 8000
