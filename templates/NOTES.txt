@@ -1,0 +1,9 @@
+See:
+  Ingress:
+    - https://{{ .Values.hostPrefix }}{{ .Values.frontendHost }}
+    - https://{{ .Values.hostPrefix }}{{ .Values.frontendGoHost }}
+    - https://{{ .Values.hostPrefix }}{{ .Values.frontendJsHost }}
+  Gateway API:
+    - https://{{ .Values.hostPrefix }}{{ .Values.gatewayFrontendHost }}
+    - https://{{ .Values.hostPrefix }}{{ .Values.gatewayFrontendGoHost }}
+    - https://{{ .Values.hostPrefix }}{{ .Values.gatewayFrontendJsHost }}

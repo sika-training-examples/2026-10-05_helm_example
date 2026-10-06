@@ -3,14 +3,14 @@ kind: Ingress
 metadata:
   name: frontend-js
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
+    cert-manager.io/cluster-issuer: {{ .Values.clusterIssuer }}
 spec:
   tls:
     - hosts:
-        - frontend-js.k8s.sikademo.com
-      secretName: frontend-js.k8s.sikademo.com-tls
+        - {{ .Values.hostPrefix }}{{ required ".Values.frontendJsHost is required" .Values.frontendJsHost }}
+      secretName: {{ .Values.hostPrefix }}{{ .Values.frontendJsHost }}-tls
   rules:
-    - host: frontend-js.k8s.sikademo.com
+    - host: {{ .Values.hostPrefix }}{{ .Values.frontendJsHost }}
       http:
         paths:
           - path: /

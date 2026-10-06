@@ -3,21 +3,21 @@ kind: ListenerSet
 metadata:
   name: frontend-js
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-gw
+    cert-manager.io/cluster-issuer: {{ .Values.gatewayClusterIssuer }}
     acme.cert-manager.io/http01-parentreffallback: "true"
 spec:
   parentRef:
-    name: gw # Gateway Name
-    namespace: gw # Gateway Namespace
+    name: {{ required ".Values.gatewayName is required" .Values.gatewayName }} # Gateway Name
+    namespace: {{ required ".Values.gatewayNamespace is required" .Values.gatewayNamespace }}  # Gateway Namespace
   listeners:
     - name: https
       protocol: HTTPS
       port: 443
-      hostname: frontend-js.gw.sikademo.com
+      hostname: {{ .Values.hostPrefix }}{{ required ".Values.gatewayFrontendJsHost is requied" .Values.gatewayFrontendJsHost }}
       tls:
         mode: Terminate
         certificateRefs:
-          - name: frontend-js.gw.sikademo.com-tls
+          - name: {{ .Values.hostPrefix }}{{ .Values.gatewayFrontendJsHost }}-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -30,7 +30,7 @@ spec:
       name: frontend-js
       sectionName: https
   hostnames:
-    - frontend-js.gw.sikademo.com
+    - {{ .Values.hostPrefix }}{{ .Values.gatewayFrontendJsHost }}
   rules:
     - backendRefs:
         - name: frontend-js

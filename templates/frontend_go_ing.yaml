@@ -3,14 +3,14 @@ kind: Ingress
 metadata:
   name: frontend-go
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
+    cert-manager.io/cluster-issuer: {{ .Values.clusterIssuer }}
 spec:
   tls:
     - hosts:
-        - frontend-go.k8s.sikademo.com
-      secretName: frontend-go.k8s.sikademo.com-tls
+        - {{ .Values.hostPrefix }}{{ required ".Values.frontendGoHost is required" .Values.frontendGoHost }}
+      secretName: {{ .Values.hostPrefix }}{{ .Values.frontendGoHost }}-tls
   rules:
-    - host: frontend-go.k8s.sikademo.com
+    - host: {{ .Values.hostPrefix }}{{ .Values.frontendGoHost }}
       http:
         paths:
           - path: /

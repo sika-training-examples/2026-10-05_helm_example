@@ -1,0 +1,17 @@
+# ===== Required =====
+frontendHost:
+frontendGoHost:
+frontendJsHost:
+
+gatewayFrontendHost:
+gatewayFrontendGoHost:
+gatewayFrontendJsHost:
+
+# ===== Optional =====
+hostPrefix: ""
+
+clusterIssuer: letsencrypt
+gatewayClusterIssuer: letsencrypt-gw
+
+gatewayName: gw
+gatewayNamespace: gw
