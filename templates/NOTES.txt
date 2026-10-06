@@ -3,7 +3,15 @@ See:
     - https://{{ .Values.hostPrefix }}{{ .Values.frontendHost }}
     - https://{{ .Values.hostPrefix }}{{ .Values.frontendGoHost }}
     - https://{{ .Values.hostPrefix }}{{ .Values.frontendJsHost }}
+  {{- if (or .Values.gatewayFrontendHost .Values.gatewayFrontendGoHost .Values.gatewayFrontendJsHost)}}
   Gateway API:
+  {{- end }}
+    {{- if .Values.gatewayFrontendHost }}
     - https://{{ .Values.hostPrefix }}{{ .Values.gatewayFrontendHost }}
+    {{- end }}
+    {{- if .Values.gatewayFrontendGoHost }}
     - https://{{ .Values.hostPrefix }}{{ .Values.gatewayFrontendGoHost }}
+    {{- end }}
+    {{- if .Values.gatewayFrontendJsHost }}
     - https://{{ .Values.hostPrefix }}{{ .Values.gatewayFrontendJsHost }}
+    {{- end }}

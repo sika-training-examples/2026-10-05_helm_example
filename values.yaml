@@ -3,12 +3,12 @@ frontendHost:
 frontendGoHost:
 frontendJsHost:
 
+# ===== Optional =====
+hostPrefix: ""
+
 gatewayFrontendHost:
 gatewayFrontendGoHost:
 gatewayFrontendJsHost:
-
-# ===== Optional =====
-hostPrefix: ""
 
 BACKEND_EXTRA_TEXT_SUFFIX: ""
 BACKEND_SLOW_START: 0

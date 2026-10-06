@@ -1,3 +1,4 @@
+{{ if .Values.gatewayFrontendGoHost }}
 apiVersion: gateway.networking.k8s.io/v1
 kind: ListenerSet
 metadata:
@@ -13,7 +14,7 @@ spec:
     - name: https
       protocol: HTTPS
       port: 443
-      hostname: {{ .Values.hostPrefix }}{{ required ".Values.gatewayFrontendGoHost is requied" .Values.gatewayFrontendGoHost }}
+      hostname: {{ .Values.hostPrefix }}{{ .Values.gatewayFrontendGoHost }}
       tls:
         mode: Terminate
         certificateRefs:
@@ -35,3 +36,4 @@ spec:
     - backendRefs:
         - name: frontend-go
           port: 80
+{{ end }}
